@@ -35,5 +35,42 @@ print("Напишите код, который запрашивает число
       "Используйте правило для проверки: “Число является простым, если делится нацело только на единицу и на себя”. "
       "Сделайте ограничение на ввод отрицательных чисел и чисел больше 100 тысяч.")
 
+def check_prime_number(numb)->bool:
+    if numb < 3:
+        return True
+    for i in range(2, numb):
+        if numb// i == 0:
+            return True
+    return False
 
-num = int(input("введите любое не отрицательное число не больше 100_000: "))
+
+num = int(input("Введите любое не отрицательное число не больше 100_000: "))
+
+if num in range(0, 100_001):
+    print("Это простое число" if check_prime_number(num) else "Это составное число")
+else:
+    print("Число вне указанного диапазона")
+
+
+print()
+print()
+print("Задача 3.")
+print("Программа загадывает число от 0 до 1000. Необходимо угадать число за 10 попыток."
+      " Программа должна подсказывать “больше” или “меньше” после каждой попытки. "
+      "Для генерации случайного числа используйте код: "
+      "from random import randint num = randint(LOWER_LIMIT, UPPER_LIMIT)")
+
+from random import randint
+
+target_numb = randint(0, 1001)
+
+for i in range(1, 11):
+    try_numb = int(input("Попытка №" + str(i) + "введите число: "))
+    if try_numb == target_numb:
+        print("Верно! Угадали!")
+        break
+    else:
+        print("Загаданное число больше" if try_numb< target_numb else "Загаданное число меньше")
+else:
+    print("Попытки закончились, Вы не угадали число.")
+
